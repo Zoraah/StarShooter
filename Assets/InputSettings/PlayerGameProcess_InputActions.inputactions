@@ -2,7 +2,7 @@
     "name": "PlayerGameProcess_InputActions",
     "maps": [
         {
-            "name": "Game proccess",
+            "name": "PlayerPersonControl",
             "id": "4a81c26c-910c-4571-bc33-e4a666ee67cf",
             "actions": [
                 {
@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "f0023b03-e60c-4258-a542-77056b03dd68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Look",
@@ -34,16 +43,16 @@
                 },
                 {
                     "name": "Fire",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "17dc68b5-b83a-4bfd-bf9f-3828378d93e6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Hide mouse",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "7104f67f-df5a-42c2-903d-dc4466e0badf",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -179,6 +188,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SelectWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f3947ba5-b517-409e-97bf-2f79b49a695d",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
