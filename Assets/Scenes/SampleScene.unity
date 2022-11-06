@@ -811,9 +811,11 @@ MonoBehaviour:
   OnShootEvent:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
   OnHideEvent:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
   _gunAnimator: {fileID: 0}
   _bulletSpawnPosition: {fileID: 383993711}
   _bullet: {fileID: 5507853268657618313, guid: 03d19be8a88240a4285d17059be23d2b, type: 3}
@@ -1264,7 +1266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &569301040
 Transform:
   m_ObjectHideFlags: 0
@@ -1297,7 +1299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthIndentificator: {fileID: 569301044}
-  _gun: {fileID: 314991305}
+  _gun: {fileID: 0}
   _defaultHealth: 50
   _health: 0
   _defaultFireDelay: 3
@@ -2669,9 +2671,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7d6a1324-8eff-42e7-b438-ae717deb7bb8
     m_ActionName: Game proccess/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1560855051}
+        m_TargetAssemblyTypeName: StarShooter.Logic.Player.PlayerMovementController,
+          Assembly-CSharp
+        m_MethodName: GetRunValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f0023b03-e60c-4258-a542-77056b03dd68
+    m_ActionName: PlayerPersonControl/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Game proccess
+  m_DefaultActionMap: PlayerPersonControl
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1016470330
@@ -3654,7 +3673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1447121272}
   - component: {fileID: 1447121271}
-  - component: {fileID: 1447121270}
+  - component: {fileID: 1447121273}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3662,26 +3681,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1447121270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447121269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &1447121271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3712,6 +3711,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1447121273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447121269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &1560124429
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,6 +4246,7 @@ GameObject:
   - component: {fileID: 1997492801}
   - component: {fileID: 1997492800}
   - component: {fileID: 1997492803}
+  - component: {fileID: 1997492804}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -4312,7 +4342,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1997492798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6af2d7765c40c4246bee0c8240c74199, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f7a388d167f84940a06eea0f89fc95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnShootEvent:
@@ -4321,13 +4351,33 @@ MonoBehaviour:
   OnHideEvent:
     m_PersistentCalls:
       m_Calls: []
-  _gunAnimator: {fileID: 0}
+  _gunAnimator: {fileID: 1997492804}
   _bulletSpawnPosition: {fileID: 512568941}
   _bullet: {fileID: 5507853268657618313, guid: 03d19be8a88240a4285d17059be23d2b, type: 3}
-  _force: 50
+  _force: 25
   _damage: 5
-  _energyCost: 10
-  _readyToFire: 0
+  _energyCost: 0
+  _readyToFire: 1
+--- !u!95 &1997492804
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997492798}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2055309517
 GameObject:
   m_ObjectHideFlags: 0

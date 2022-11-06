@@ -35,6 +35,20 @@ namespace StarShooter.Logic.Player
             _movementY = movementVector.y;
         }
 
+        public void GetRunValue(InputAction.CallbackContext callbackContext)
+		{
+            bool isRun = callbackContext.ReadValueAsButton();
+            
+            if(isRun)
+			{
+                _speedValue = _runSpeed;
+			}
+            else
+			{
+                _speedValue = _walkSpeed;
+			}
+		}
+
         public void Jump(InputAction.CallbackContext callbackContext)
         {
             if (callbackContext.ReadValueAsButton())
