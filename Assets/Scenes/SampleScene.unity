@@ -203,6 +203,7 @@ MonoBehaviour:
   _damage: 5
   _energyCost: 10
   _readyToFire: 1
+  _enableShootAnimations: 0
   _bulletsSpawnPositions:
   - {fileID: 1186051140}
   - {fileID: 194577300}
@@ -708,7 +709,7 @@ GameObject:
   - component: {fileID: 314991304}
   - component: {fileID: 314991303}
   - component: {fileID: 314991302}
-  - component: {fileID: 314991305}
+  - component: {fileID: 314991307}
   - component: {fileID: 314991306}
   m_Layer: 0
   m_Name: Gun
@@ -796,33 +797,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314991300}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &314991305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314991300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6af2d7765c40c4246bee0c8240c74199, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnShootEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  OnHideEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _gunAnimator: {fileID: 0}
-  _bulletSpawnPosition: {fileID: 383993711}
-  _bullet: {fileID: 5507853268657618313, guid: 03d19be8a88240a4285d17059be23d2b, type: 3}
-  _force: 50
-  _damage: 5
-  _energyCost: 10
-  _readyToFire: 0
 --- !u!114 &314991306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,6 +826,32 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &314991307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314991300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7a388d167f84940a06eea0f89fc95a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnShootEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHideEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _gunAnimator: {fileID: 0}
+  _bulletSpawnPosition: {fileID: 383993711}
+  _bullet: {fileID: 5507853268657618313, guid: 03d19be8a88240a4285d17059be23d2b, type: 3}
+  _force: 50
+  _damage: 5
+  _energyCost: 0
+  _readyToFire: 0
+  _enableShootAnimations: 0
 --- !u!1 &383993710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,7 +1365,7 @@ RectTransform:
   m_Children:
   - {fileID: 1945533426}
   m_Father: {fileID: 837105276}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1730,10 +1730,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 837105276}
-  - component: {fileID: 837105275}
+  - component: {fileID: 837105280}
   - component: {fileID: 837105279}
   - component: {fileID: 837105277}
-  - component: {fileID: 837105278}
   m_Layer: 0
   m_Name: EnemyHumanoid
   m_TagString: Untagged
@@ -1741,27 +1740,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &837105275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837105274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce25305b5a8c80f4a8b4504c948d12b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthIndentificator: {fileID: 837105279}
-  _gun: {fileID: 1997492803}
-  _defaultHealth: 50
-  _health: 0
-  _defaultFireDelay: 3
-  _fireDelay: 0
-  _navMeshAgent: {fileID: 837105277}
-  _startPosition: {fileID: 0}
-  _anglesOfView: 70
 --- !u!4 &837105276
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,6 +1752,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1113697669}
   - {fileID: 884283468}
   - {fileID: 1997492799}
   - {fileID: 576636698}
@@ -1802,20 +1781,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &837105278
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837105274}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 10
-  m_Height: 0
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &837105279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,6 +1794,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthImage: {fileID: 1945533424}
+--- !u!114 &837105280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837105274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce25305b5a8c80f4a8b4504c948d12b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthIndentificator: {fileID: 837105279}
+  _gun: {fileID: 1997492803}
+  _defaultHealth: 50
+  _health: 0
+  _defaultFireDelay: 3
+  _fireDelay: 0
+  _head: {fileID: 1113697670}
+  _navMeshAgent: {fileID: 837105277}
+  _startPosition: {fileID: 0}
 --- !u!1 &840346325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,12 +2086,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884283467}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 1, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 837105276}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &884283469
 CapsuleCollider:
@@ -2188,7 +2174,7 @@ MonoBehaviour:
     OnCollisionEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 837105275}
+        - m_Target: {fileID: 837105280}
           m_TargetAssemblyTypeName: StarShooter.Logic.Enemy.Enemy, Assembly-CSharp
           m_MethodName: TakeDamage
           m_Mode: 0
@@ -2199,6 +2185,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 837105279}
+          m_TargetAssemblyTypeName: StarShooter.UI.HealthIndentificator, Assembly-CSharp
+          m_MethodName: SetActiveHealthIndetifier
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
           m_CallState: 2
 --- !u!1 &903604264
 GameObject:
@@ -3016,6 +3014,179 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111266503}
   m_Mesh: {fileID: -2432090755550338912, guid: 60a030a434808874bb2d1da63056e75e, type: 3}
+--- !u!1 &1113697668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1113697669}
+  - component: {fileID: 1113697673}
+  - component: {fileID: 1113697672}
+  - component: {fileID: 1113697675}
+  - component: {fileID: 1113697671}
+  - component: {fileID: 1113697670}
+  - component: {fileID: 1113697674}
+  m_Layer: 0
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1113697669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113697668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.941, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 837105276}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1113697670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113697668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e02472e3d297e64b9e56433a85c9859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPlayerDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerLosted:
+    m_PersistentCalls:
+      m_Calls: []
+  _anglesOfView: 70
+--- !u!135 &1113697671
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113697668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1113697672
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113697668}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1113697673
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113697668}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1113697674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113697668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736516d830e047b449ddd7c86600ca01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEnterEvents:
+  - ObjectTag: PlayerBullet
+    OnCollisionEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 837105280}
+          m_TargetAssemblyTypeName: StarShooter.Logic.Enemy.Enemy, Assembly-CSharp
+          m_MethodName: TakeDamage
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 837105279}
+          m_TargetAssemblyTypeName: StarShooter.UI.HealthIndentificator, Assembly-CSharp
+          m_MethodName: SetActiveHealthIndetifier
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+--- !u!135 &1113697675
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113697668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1184712521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3606,6 +3777,7 @@ MonoBehaviour:
   _damage: 5
   _energyCost: 10
   _readyToFire: 1
+  _enableShootAnimations: 1
   _bulletsSpawnPositions:
   - {fileID: 1044031675}
   - {fileID: 1276540403}
@@ -4246,7 +4418,6 @@ GameObject:
   - component: {fileID: 1997492801}
   - component: {fileID: 1997492800}
   - component: {fileID: 1997492803}
-  - component: {fileID: 1997492804}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -4268,7 +4439,7 @@ Transform:
   m_Children:
   - {fileID: 512568941}
   m_Father: {fileID: 837105276}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1997492800
 BoxCollider:
@@ -4351,33 +4522,14 @@ MonoBehaviour:
   OnHideEvent:
     m_PersistentCalls:
       m_Calls: []
-  _gunAnimator: {fileID: 1997492804}
+  _gunAnimator: {fileID: 0}
   _bulletSpawnPosition: {fileID: 512568941}
   _bullet: {fileID: 5507853268657618313, guid: 03d19be8a88240a4285d17059be23d2b, type: 3}
   _force: 25
   _damage: 5
   _energyCost: 0
   _readyToFire: 1
---- !u!95 &1997492804
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997492798}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  _enableShootAnimations: 0
 --- !u!1 &2055309517
 GameObject:
   m_ObjectHideFlags: 0
