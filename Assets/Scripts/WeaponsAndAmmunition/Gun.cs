@@ -23,6 +23,7 @@ namespace StarShooter.WeaponsAndAmmunitions
         [SerializeField] protected int _damage = default;
         [SerializeField] protected float _energyCost = default;
         [SerializeField] protected bool _readyToFire = default;
+        [SerializeField] protected bool _enableShootAnimations = default; 
 
         private void OnEnable()
         {
@@ -48,8 +49,6 @@ namespace StarShooter.WeaponsAndAmmunitions
 
 		#endregion
 
-		#region Animations
-
         public void PlayAnimation(string animationName)
 		{
             _gunAnimator.Play(animationName);
@@ -61,11 +60,18 @@ namespace StarShooter.WeaponsAndAmmunitions
             gameObject.SetActive(false);
 		}
 
-		#endregion
-
 		public void IsReadyToFire(int isReady)
 		{
             _readyToFire = Convert.ToBoolean(isReady);
+		}
+
+        protected void PlayShootAnimation()
+		{
+            if(_enableShootAnimations)
+			{
+                PlayAnimation(SHOOT_ANIMATION);
+                _readyToFire = false;
+			}
 		}
 
         protected void SetBulletDamage(Ammunition ammunition)

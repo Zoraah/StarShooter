@@ -14,11 +14,12 @@ namespace StarShooter.WeaponsAndAmmunitions
 		{
             if (_readyToFire)
             {
-                _gunAnimator.Play($"{SHOOT_ANIMATION}");
+                PlayShootAnimation();
+
                 List<Rigidbody> bullets = CreateBullets(rotation);
                 SetBulletsDamage(bullets);
                 SetBulletsForce(bullets);
-                _readyToFire = false;
+                
                 OnShootEvent?.Invoke(_energyCost);
             }
         }
