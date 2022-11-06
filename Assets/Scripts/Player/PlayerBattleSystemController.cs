@@ -28,6 +28,11 @@ namespace StarShooter.Logic.Player
 			}
 		}
 
+		private void Start()
+		{
+            EnableChoosedWeapon();
+		}
+
 		private void Update()
 		{
             Debug.DrawRay(_camera.transform.position, _dir, Color.red);
