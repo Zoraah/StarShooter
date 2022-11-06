@@ -21,7 +21,7 @@ namespace StarShooter.WeaponsAndAmmunitions
 
         [SerializeField] protected int _force = default;
         [SerializeField] protected int _damage = default;
-        [SerializeField] protected float _energyCost = 10;
+        [SerializeField] protected float _energyCost = default;
         [SerializeField] protected bool _readyToFire = default;
 
         private void OnEnable()
@@ -33,26 +33,18 @@ namespace StarShooter.WeaponsAndAmmunitions
 
         public virtual void Fire(Quaternion rotation)
 		{
-            Rigidbody bullet = Instantiate(_bullet, _bulletSpawnPosition.position, rotation);
-            SetBulletDamage(_bullet.GetComponent<Ammunition>());
-            bullet.AddForce(bullet.transform.forward * _force, ForceMode.Impulse);
 
-            OnShootEvent?.Invoke(_energyCost);
-        }
-
+		}
+        
         public virtual void Fire()
 		{
-            Rigidbody bullet = Instantiate(_bullet, _bulletSpawnPosition.position, _bulletSpawnPosition.rotation);
-            SetBulletDamage(_bullet.GetComponent<Ammunition>());
-            bullet.AddForce(bullet.transform.forward * _force, ForceMode.Impulse);
-
-            Debug.Log("Gun fire");
+            
 		}
 
         public virtual void MultipleTimeFire(Transform playerTransform)
-        {
+		{
 
-        }
+		}
 
 		#endregion
 

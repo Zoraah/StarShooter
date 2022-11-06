@@ -23,7 +23,17 @@ namespace StarShooter.WeaponsAndAmmunitions
             }
         }
 
-        private List<Rigidbody> CreateBullets(Quaternion rotation)
+		public override void Fire()
+		{
+
+		}
+
+		public override void MultipleTimeFire(Transform playerTransform)
+		{
+
+		}
+
+		private List<Rigidbody> CreateBullets(Quaternion rotation)
 		{
             List<Rigidbody> bullets = new List<Rigidbody>();
 

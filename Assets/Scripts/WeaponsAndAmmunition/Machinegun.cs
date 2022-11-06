@@ -14,7 +14,17 @@ namespace StarShooter.WeaponsAndAmmunitions
 
         private Coroutine _multipleFireCoroutine = default;
 
-        public override void MultipleTimeFire(Transform transform)
+		public override void Fire(Quaternion rotation)
+		{
+
+		}
+
+		public override void Fire()
+		{
+
+		}
+
+		public override void MultipleTimeFire(Transform transform)
         {
             KillCoroutine(_multipleFireCoroutine);
             _multipleFireCoroutine = StartCoroutine(MultipleFire(transform));

@@ -72,7 +72,7 @@ namespace StarShooter.Logic.Enemy
 
 				if (_fireDelay <= 0)
 				{
-					_gun.MultipleTimeFire(player.transform);
+					Fire();
 					_fireDelay = _defaultFireDelay;
 				}
 
