@@ -2687,7 +2687,7 @@ MonoBehaviour:
     m_ActionId: f0023b03-e60c-4258-a542-77056b03dd68
     m_ActionName: PlayerPersonControl/New action
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: PC
   m_DefaultActionMap: PlayerPersonControl
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
