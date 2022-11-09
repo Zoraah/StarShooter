@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarShooter.Interfaces;
 
 namespace StarShooter.Logic.Player
 {
-    public class PlayerLifeController : MonoBehaviour
+    public class PlayerLifeController : MonoBehaviour , IDamagebleObject
     {
         [SerializeField] private int _health = 100;
         [SerializeField] private float _energy = 200;

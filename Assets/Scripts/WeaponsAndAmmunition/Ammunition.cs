@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace StarShooter.WeaponsAndAmmunitions
 {
-	public class Ammunition : MonoBehaviour, ICollisionObject
+	public class Ammunition : MonoBehaviour
 	{
 		[SerializeField] private int _damage = default;
 
@@ -15,15 +15,12 @@ namespace StarShooter.WeaponsAndAmmunitions
 		{
 			if (collision.gameObject.tag != gameObject.tag)
 			{
-				Destroy(this.gameObject);
+				if (collision.gameObject.GetComponent<IDamagebleObject>() != null)
+				{
+					collision.gameObject.GetComponent<IDamagebleObject>().TakeDamage(_damage);
+					Destroy(this.gameObject);
+				}
 			}
-		}
-
-		public void DoCollisionOperation(GameObject gameObject)
-		{
-			ICollisionRelationObject playerRelations = gameObject.GetComponent<ICollisionRelationObject>();
-			playerRelations.DoCollisionOperation(_damage);
-			Destroy(this.gameObject);
 		}
 
 		public void SetBulletDamage(int damage)

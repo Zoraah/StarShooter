@@ -1,12 +1,13 @@
 using StarShooter.WeaponsAndAmmunitions;
 using StarShooter.UI;
+using StarShooter.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace StarShooter.Logic.Enemy
 {
-    public abstract class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour , IDamagebleObject
     {
         [SerializeField] protected HealthIndentificator _healthIndentificator = default;
         [SerializeField] protected Gun _gun = default;

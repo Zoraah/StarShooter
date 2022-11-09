@@ -7,39 +7,32 @@ using UnityEngine.Events;
 
 namespace StarShooter.Logic
 {
-	public class CollisionEventsController : MonoBehaviour, ICollisionRelationObject
+	public class CollisionEventsController : MonoBehaviour
 	{
 		[SerializeField] private CollisionEvent[] _collisionEnterEvents = default;
-
+		[SerializeField] private CollisionEvent[] _collisionExitEvents = default;
+		
 		private int _eventIndex = default;
 
-		private void OnCollisionEnter(Collision collision)
+		private void OnCollisionEnter(Collision other)
 		{
-			RelateWithObject(collision.gameObject);
+			Relate(other.gameObject, _collisionEnterEvents);
 		}
 
-		public void DoCollisionOperation(int value)
+		private void OnCollisionExit(Collision other) 
 		{
-			_collisionEnterEvents[_eventIndex].OnCollisionEvent?.Invoke(value);
+			Relate(other.gameObject, _collisionExitEvents);
 		}
 
-		private void RelateWithObject(GameObject obj)
+		private void Relate(GameObject gameObject, CollisionEvent[] collisionEvents)
 		{
-			ICollisionObject collisionObject = obj.GetComponent<ICollisionObject>();
-
-			if (collisionObject != null)
+			foreach (var collisionEvent in collisionEvents)
 			{
-				for (int i = 0; i < _collisionEnterEvents.Length; i++)
+				if(gameObject.tag == collisionEvent.ObjectTag)
 				{
-					if (_collisionEnterEvents[i].ObjectTag == obj.tag)
-					{
-						_eventIndex = i;
-						collisionObject.DoCollisionOperation(this.gameObject);
-					}
+					collisionEvent.OnCollisionEvent?.Invoke();
 				}
 			}
-
-			_eventIndex = 0;
 		}
 	}
 
@@ -47,6 +40,6 @@ namespace StarShooter.Logic
     internal struct CollisionEvent
 	{
 		public string ObjectTag;
-		public UnityEvent<int> OnCollisionEvent;
+		public UnityEvent OnCollisionEvent;
 	}
 }

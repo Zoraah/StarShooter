@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace StarShooter.Interfaces
 {
-    public interface ICollisionRelationObject
+    public interface IDamagebleObject
     {
-        public void DoCollisionOperation(int value);
+        public void TakeDamage(int value);
     }
 }
