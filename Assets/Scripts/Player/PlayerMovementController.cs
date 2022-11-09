@@ -17,6 +17,7 @@ namespace StarShooter.Logic.Player
 
         private float _movementX = default;
         private float _movementY = default;
+        private bool _isGrounded = true;
 
 		private void Awake()
 		{
@@ -53,10 +54,18 @@ namespace StarShooter.Logic.Player
         {
             if (callbackContext.ReadValueAsButton())
             {
-                _playerRigidbody.AddForce(Vector3.up * _jumpPower);
+                if(_isGrounded)
+                {
+                    _playerRigidbody.AddForce(Vector3.up * _jumpPower);
+                }
 
                 Debug.Log("Jump");
             }
+        }
+
+        public void SetGroundedValue(bool value)
+        {
+            _isGrounded = value;
         }
 
         private void Move()
