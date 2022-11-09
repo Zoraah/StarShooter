@@ -209,7 +209,23 @@
         {
             "name": "PC",
             "bindingGroup": "PC",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Pointer>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
         },
         {
             "name": "Android",
