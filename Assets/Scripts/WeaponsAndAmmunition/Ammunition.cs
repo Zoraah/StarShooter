@@ -18,8 +18,9 @@ namespace StarShooter.WeaponsAndAmmunitions
 				if (collision.gameObject.GetComponent<IDamagebleObject>() != null)
 				{
 					collision.gameObject.GetComponent<IDamagebleObject>().TakeDamage(_damage);
-					Destroy(this.gameObject);
 				}
+
+				Destroy(this.gameObject);
 			}
 		}
 
