@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using StarShooter.Interfaces;
 
-namespace StarShooter.Logic.Player
+namespace StarShooter.Logic
 {
     public class LiveObjectCollisionController : MonoBehaviour , IDamagebleObject
     {
