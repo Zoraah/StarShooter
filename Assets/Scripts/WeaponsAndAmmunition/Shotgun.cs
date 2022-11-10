@@ -21,6 +21,7 @@ namespace StarShooter.WeaponsAndAmmunitions
                 SetBulletsForce(bullets);
                 
                 OnShootEvent?.Invoke(_energyCost);
+                IsFire = false;
             }
         }
 

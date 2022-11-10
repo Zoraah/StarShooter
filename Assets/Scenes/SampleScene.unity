@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 33194635}
   - component: {fileID: 33194634}
   m_Layer: 0
-  m_Name: Shotgun (1)
+  m_Name: Machinegun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 33194632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59797aafa194cad448ad578516e37773, type: 3}
+  m_Script: {fileID: 11500000, guid: 71a7fbced1de58643bba771fbe753ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnShootEvent:
@@ -196,20 +196,15 @@ MonoBehaviour:
   OnHideEvent:
     m_PersistentCalls:
       m_Calls: []
+  IsFire: 0
   _gunAnimator: {fileID: 33194634}
   _bulletSpawnPosition: {fileID: 873309548}
   _bullet: {fileID: 8298474083039261884, guid: d320189d77e89334bbd97d2276e42a6b, type: 3}
   _force: 25
-  _damage: 5
-  _energyCost: 10
+  _damage: 2
+  _energyCost: 2
   _readyToFire: 1
-  _enableShootAnimations: 0
-  _bulletsSpawnPositions:
-  - {fileID: 1186051140}
-  - {fileID: 194577300}
-  - {fileID: 2055309518}
-  - {fileID: 1790123946}
-  _randomizedRotationAngles: 10
+  _enableShootAnimations: 1
 --- !u!1 &63042161
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,37 +302,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &194577299
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 194577300}
-  m_Layer: 0
-  m_Name: Position2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &194577300
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194577299}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 873309548}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &223596075
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,23 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 736516d830e047b449ddd7c86600ca01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEnterEvents:
-  - ObjectTag: PlayerBullet
-    OnCollisionEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 569301042}
-          m_TargetAssemblyTypeName: StarShooter.Logic.Enemy.EnemyTower, Assembly-CSharp
-          m_MethodName: TakeDamage
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  _collisionEnterEvents: []
   _collisionExitEvents: []
 --- !u!114 &314991307
 MonoBehaviour:
@@ -845,6 +793,7 @@ MonoBehaviour:
   OnHideEvent:
     m_PersistentCalls:
       m_Calls: []
+  IsFire: 0
   _gunAnimator: {fileID: 0}
   _bulletSpawnPosition: {fileID: 383993711}
   _bullet: {fileID: 5507853268657618313, guid: 03d19be8a88240a4285d17059be23d2b, type: 3}
@@ -1102,27 +1051,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 438936964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736516d830e047b449ddd7c86600ca01, type: 3}
+  m_Script: {fileID: 11500000, guid: f8c1a851cb187ca44a15c435878bb6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEnterEvents:
-  - ObjectTag: PlayerBullet
-    OnCollisionEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 569301042}
-          m_TargetAssemblyTypeName: StarShooter.Logic.Enemy.EnemyTower, Assembly-CSharp
-          m_MethodName: TakeDamage
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  _collisionExitEvents: []
+  OnDamageTakedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 569301042}
+        m_TargetAssemblyTypeName: StarShooter.Logic.Enemy.Enemy, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &512568940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &569301040
 Transform:
   m_ObjectHideFlags: 0
@@ -1301,7 +1247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthIndentificator: {fileID: 569301044}
-  _gun: {fileID: 0}
+  _gun: {fileID: 314991307}
   _defaultHealth: 50
   _health: 0
   _defaultFireDelay: 3
@@ -1750,7 +1696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837105274}
   m_LocalRotation: {x: 0, y: -0.93086463, z: 0, w: 0.36536434}
-  m_LocalPosition: {x: 0, y: 0, z: 11.04}
+  m_LocalPosition: {x: 0, y: 0, z: 15.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1955,11 +1901,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.274, z: 0.5076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1186051140}
-  - {fileID: 194577300}
-  - {fileID: 2055309518}
-  - {fileID: 1790123946}
+  m_Children: []
   m_Father: {fileID: 33194633}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3314,37 +3256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ca3d010b01dfa4faac61e2aff30bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1186051139
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1186051140}
-  m_Layer: 0
-  m_Name: Position1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1186051140
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186051139}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 873309548}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1231826202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3620,27 +3531,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1277749687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736516d830e047b449ddd7c86600ca01, type: 3}
+  m_Script: {fileID: 11500000, guid: f8c1a851cb187ca44a15c435878bb6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEnterEvents:
-  - ObjectTag: PlayerBullet
-    OnCollisionEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 569301042}
-          m_TargetAssemblyTypeName: StarShooter.Logic.Enemy.EnemyTower, Assembly-CSharp
-          m_MethodName: TakeDamage
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  _collisionExitEvents: []
+  OnDamageTakedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 569301042}
+        m_TargetAssemblyTypeName: StarShooter.Logic.Enemy.Enemy, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1286251084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3854,6 +3762,7 @@ MonoBehaviour:
   OnHideEvent:
     m_PersistentCalls:
       m_Calls: []
+  IsFire: 0
   _gunAnimator: {fileID: 1377979797}
   _bulletSpawnPosition: {fileID: 1256493713}
   _bullet: {fileID: 8298474083039261884, guid: d320189d77e89334bbd97d2276e42a6b, type: 3}
@@ -4288,37 +4197,6 @@ MonoBehaviour:
   _playerRigidody: {fileID: 1016470327}
   _playerCamera: {fileID: 404576756}
   _rotationSpeed: 15
---- !u!1 &1790123945
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1790123946}
-  m_Layer: 0
-  m_Name: Position4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1790123946
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790123945}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: -0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 873309548}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1866398275
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,6 +4484,7 @@ MonoBehaviour:
   OnHideEvent:
     m_PersistentCalls:
       m_Calls: []
+  IsFire: 0
   _gunAnimator: {fileID: 0}
   _bulletSpawnPosition: {fileID: 512568941}
   _bullet: {fileID: 5507853268657618313, guid: 03d19be8a88240a4285d17059be23d2b, type: 3}
@@ -4614,37 +4493,6 @@ MonoBehaviour:
   _energyCost: 0
   _readyToFire: 1
   _enableShootAnimations: 0
---- !u!1 &2055309517
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2055309518}
-  m_Layer: 0
-  m_Name: Position3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2055309518
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2055309517}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 873309548}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2084433784
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ namespace StarShooter.WeaponsAndAmmunitions
             bullet.AddForce(bullet.transform.forward * _force, ForceMode.Impulse);
 
             OnShootEvent?.Invoke(_energyCost);
+            IsFire = false;
         }
 
         public override void Fire()
@@ -22,6 +23,7 @@ namespace StarShooter.WeaponsAndAmmunitions
             bullet.AddForce(bullet.transform.forward * _force, ForceMode.Impulse);
 
             Debug.Log("Gun fire");
+            IsFire = false;
         }
 
         public override void MultipleTimeFire(Transform playerTransform)

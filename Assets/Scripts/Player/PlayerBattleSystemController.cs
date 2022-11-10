@@ -11,6 +11,8 @@ namespace StarShooter.Logic.Player
         [SerializeField] private Camera _camera = default;
         [SerializeField] private Gun[] _guns = default;
 
+        private Quaternion Direction = default;
+
         [SerializeField] protected const string SHOW_GUN_ANIMATION = "Animation_Showing";
         [SerializeField] protected const string HIDE_GUN_ANIMATION = "Animation_Hiding";
 
@@ -36,42 +38,52 @@ namespace StarShooter.Logic.Player
 		private void Update()
 		{
             Debug.DrawRay(_camera.transform.position, _dir, Color.red);
+
+            SetDirection();
         }
 
 		public void Fire(InputAction.CallbackContext callbackContext)
         {
-            if (callbackContext.ReadValueAsButton())
-            {
-                SetDirectionAndFire();
-            }
+            SetFireValues(callbackContext.ReadValueAsButton());
         }
 
-        public void SetDirectionAndFire()
+        public void SetFireValues(bool isFire)
 		{
+            _guns[_choosedGunIndex].IsFire = isFire;
+            _guns[_choosedGunIndex].Fire(Direction);
+		}
+
+        private void SetDirection()
+        {
             RaycastHit[] raycastHit;
 
             Vector3 direction = default;
 
             raycastHit = Physics.RaycastAll(_camera.transform.position, _camera.transform.forward, _rayDistance);
-			if (raycastHit.Length > 0)
+            if (raycastHit.Length > 0)
             {
-                foreach (var hit in raycastHit)
+                if (raycastHit[0].collider.gameObject.layer != LayerMask.NameToLayer("Player"))
                 {
-                    if (hit.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
-                    {
-                        direction = hit.point - _guns[_choosedGunIndex].BulletSpawnerPosition.position;
-                        _guns[_choosedGunIndex].Fire(Quaternion.LookRotation(direction, Vector3.up));
-                        break;
-                    }
+                    direction = raycastHit[0].point - _guns[_choosedGunIndex].BulletSpawnerPosition.position;
+                }
+                else
+                {
+                    direction = GetPointAtForward();
                 }
             }
             else
-			{
-                direction = (_camera.transform.position + _camera.transform.forward * _rayDistance)  - _guns[_choosedGunIndex].BulletSpawnerPosition.position;
-                _guns[_choosedGunIndex].Fire(Quaternion.LookRotation(direction, Vector3.up));
+            {
+                direction = GetPointAtForward();
             }
-            _dir = direction;
-		}
+
+            Direction = Quaternion.LookRotation(direction, Vector3.up);
+            _guns[_choosedGunIndex].Direction = Direction;
+        }
+
+        private Vector3 GetPointAtForward()
+        {
+            return (_camera.transform.position + _camera.transform.forward * _rayDistance)  - _guns[_choosedGunIndex].BulletSpawnerPosition.position;
+        }
 
 		#region WeaponsControlling
 

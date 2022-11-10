@@ -13,6 +13,9 @@ namespace StarShooter.WeaponsAndAmmunitions
         public UnityEvent<float> OnShootEvent;
         public UnityEvent OnHideEvent;
 
+        public bool IsFire = default;
+        public Quaternion Direction = default;
+
         [SerializeField] protected Animator _gunAnimator = default;
         [SerializeField] protected const string SHOOT_ANIMATION = "Animation_Shoot";
         

@@ -6,17 +6,26 @@ namespace StarShooter.WeaponsAndAmmunitions
 {
     public class Machinegun : Gun
     {
-        [SerializeField] private const float DEFAULT_FIRE_DELAY = 0.3f;
-        [SerializeField] private const int DEFAULT_MULTIPLE_TIME_FIRE_VALUE = 3;
+        [SerializeField] private const float DEFAULT_FIRE_DELAY = 0.2f;
 
         private float _fireDelay = DEFAULT_FIRE_DELAY;
-        private int _multipleTimeFireValue = DEFAULT_MULTIPLE_TIME_FIRE_VALUE;
 
-        private Coroutine _multipleFireCoroutine = default;
+        private void Update()
+        {
+            if(IsFire)
+            {
+                _fireDelay -= Time.deltaTime;
+                if (_fireDelay <= 0)
+                {
+                    SpawnBullet();
+                    _fireDelay = DEFAULT_FIRE_DELAY;
+                }
+            }
+        }
 
-		public override void Fire(Quaternion rotation)
+		public override void Fire(Quaternion direction)
 		{
-
+            
 		}
 
 		public override void Fire()
@@ -24,29 +33,10 @@ namespace StarShooter.WeaponsAndAmmunitions
 
 		}
 
-		public override void MultipleTimeFire(Transform transform)
+        private void SpawnBullet()
         {
-            KillCoroutine(_multipleFireCoroutine);
-            _multipleFireCoroutine = StartCoroutine(MultipleFire(transform));
-        }
-
-        private IEnumerator MultipleFire(Transform playerTransform)
-        {
-            while (_multipleTimeFireValue > 0)
-            {
-                _fireDelay -= Time.deltaTime;
-                if (_fireDelay <= 0)
-                {
-                    Quaternion direction = LookAtObject(playerTransform);
-                    Fire(direction);
-                    _multipleTimeFireValue--;
-                    _fireDelay = DEFAULT_FIRE_DELAY;
-                }
-
-                yield return null;
-            }
-
-            _multipleTimeFireValue = DEFAULT_MULTIPLE_TIME_FIRE_VALUE;
+            Rigidbody bullet = Instantiate(_bullet, _bulletSpawnPosition.position, Direction);
+            bullet.AddForce(bullet.transform.forward * _force, ForceMode.Impulse);
         }
 
         private Quaternion LookAtObject(Transform transform)
